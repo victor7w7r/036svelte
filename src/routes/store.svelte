@@ -1,5 +1,5 @@
 <script lang="ts">
-import { data } from '@/stores/dataStore';
+import { data } from '../stores/dataStore';
 
 let dataValue: string = '';
 </script>

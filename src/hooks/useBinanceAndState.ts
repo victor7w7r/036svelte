@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
-import type { TBinance } from '@/types';
-import { binanceData } from '@/api/binance';
+import type { TBinance } from '../types';
+import { binanceData } from '../api/binance';
 
 export const useBinanceAndState = () => {
 

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 
-import { useBinanceAndState } from '@/hooks/useBinanceAndState';
-import { data } from '@/stores/dataStore';
+import { useBinanceAndState } from '../hooks/useBinanceAndState';
+import { data } from '../stores/dataStore';
 
 const { isLoading, bin, getCurrencies } = useBinanceAndState();
 
@@ -43,8 +43,8 @@ onMount(() => getCurrencies());
 </div>
 
 <style lang="scss">
-@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"; 
-.roboto {
-    font-family: 'Roboto', sans-serif;
-}
+    @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"; 
+    .roboto {
+        font-family: 'Roboto', sans-serif;
+    }
 </style>
