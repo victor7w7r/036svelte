@@ -21,7 +21,7 @@ $ git checkout sveltekit-blank #SvelteKit Blank Template
 
 ## Extra Packages
 
-- axios: Promise based HTTP client for the browser
+- rxjs: Reactive Extensions Library for JavaScript
 - sass: For nested and optimized CSS
 - yrv: The v is for Svelte, modern rounting solution (Only SPA)
 
