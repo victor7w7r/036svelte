@@ -1,12 +1,13 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { onMount, onDestroy } from 'svelte';
 
 import { useBinanceAndState } from '../hooks/useBinanceAndState';
 import { data } from '../stores/dataStore';
 
-const { isLoading, bin, getCurrencies } = useBinanceAndState();
+const { isLoading, bin, getCurrencies, unsubscribe } = useBinanceAndState();
 
 onMount(() => getCurrencies());
+onDestroy(() => unsubscribe());
 </script>
 
 <h3 class="text-center mt-3">Happy Hacking! with Typescript?</h3>
