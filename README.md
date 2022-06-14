@@ -23,6 +23,7 @@ $ git checkout sveltekit-blank #SvelteKit Blank Template
 
 - rxjs: Reactive Extensions Library for JavaScript
 - sass: For nested and optimized CSS
+- tailwindcss: Utility-first CSS framework for rapidly building custom user interfaces
 - yrv: The v is for Svelte, modern rounting solution (Only SPA)
 
 ### Run and Develop (Consider using yarn)
