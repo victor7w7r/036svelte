@@ -1,12 +1,12 @@
 import { writable } from 'svelte/store';
 import { Subscription } from 'rxjs';
 
-import type { TBinance } from '../types';
-import { binance$ } from '../api/binance';
+import type { TBinance } from '$lib/types';
+import { binance$ } from '$lib/api/binance';
 
 let subscription = new Subscription();
 
-export const useBinanceAndState = () => {
+export const useHome = () => {
 
     const bin = writable<TBinance>();
     const isLoading = writable<boolean>(true);

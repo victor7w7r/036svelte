@@ -8,7 +8,8 @@ const config = {
 		sass: {
 			sync: true,
 			implementation: sass
-		}
+		},
+		postcss: true
 	}),
 	kit: {
 		adapter: adapter()
