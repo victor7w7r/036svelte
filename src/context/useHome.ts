@@ -6,7 +6,7 @@ import { binance$ } from '@/api/binance';
 
 let subscription = new Subscription();
 
-export const useBinanceAndState = () => {
+export const useHome = () => {
 
     const bin = writable<TBinance>();
     const isLoading = writable<boolean>(true);

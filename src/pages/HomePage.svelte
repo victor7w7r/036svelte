@@ -1,51 +1,57 @@
 <script lang="ts">
 import { onDestroy, onMount } from 'svelte';
+import { navigateTo } from 'yrv';
 
-import { useBinanceAndState } from '@/hooks/useBinanceAndState';
-import { data } from '@/stores/dataStore';
+import { data, theme } from '@/stores';
+import Spinner from "@/components/Spinner.svelte";
 
-const { isLoading, bin, getCurrencies, unsubscribe } = useBinanceAndState();
+import { useHome } from '@/context/useHome';
+import { blueChange, purpleChange, redChange, emeraldChange } from '@/context/HomeContext.svelte';
+
+import brand from '../assets/brand.png';
+import brandwhite from '../assets/brandwhite.png';
+import tailwind from '../assets/tailwind.png';
+import tailwindWhite from '../assets/tailwindwhite.png';
+
+const { isLoading, bin, getCurrencies, unsubscribe } = useHome();
 
 onMount(() => getCurrencies());
 onDestroy(() => unsubscribe());
 </script>
 
-<h3 class="text-center mt-3">Happy Hacking! with Typescript?</h3>
-<p class="text-center mt-3 roboto">SCSS is working? Yes, with Roboto</p>
-{#if ($data.data !=="")}
-    <p class="text-center mt-3">Store State: Yes, you write <b>{ $data.data }</b></p>
-{:else}
-    <p class="text-center mt-3">Store State: Not yet.</p>
-{/if}
-
-<div class="row mt-4">
-    <div class="col-sm"></div>
-    <div class="col-sm">
-        <h4 class="text-center mt-3">Made with love by</h4>
-        <div class="d-flex justify-content-center">
-            <img src="/src/assets/brand.png" alt=""/>
+<div class="absolute h-screen inset-0 backdrop-blur-xl">
+    <div class='flex flex-col lg:flex-row items-center mt-24 tall:mt-32 lg:items-stretch lg:justify-evenly lg:h-3/6'>
+        <div class={`card-container ${$theme.controlBackground}`}>
+            <p class="adaptable-center-text text-lg tall:text-xl lg:text-3xl font-amina">Made with love by</p>
+            <img src={$theme.darkMode ? brandwhite : brand} alt="" class="scale-75 lg:scale-100" />
+            <h3 class="adaptable-center-text text-base lg:text-xl font-semibold mb-4">Happy Hacking! with Typescript?</h3>
+            <p class="adaptable-center-text text-base lg:text-xl font-roboto mb-8">Roboto Font works with</p>
+            <img src={$theme.darkMode ? tailwindWhite : tailwind} alt="" class="scale-50 tall:scale-75 lg:scale-75" />
         </div>
-    </div>
-    <div class="col-sm"></div>
-</div>
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-3">
-            <h3 class="text-center mt-3">Lets see bitcoin price</h3>
-            <br />
-            {#if $isLoading}
-                <p class='text-center' >Loading...</p>  
+        <div class={`card-container ${$theme.controlBackground}`}>
+            {#if ($data.data !=="")}
+                <p class="adaptable-center-text text-base lg:text-xl font-semibold">Store State: Yes, you write <b>{ $data.data }</b></p>
             {:else}
-                <p class='text-center'>Symbol: { $bin.symbol } </p>
-                <p class='text-center'>Price: { $bin.askPrice } </p>
+                <p class="adaptable-center-text text-base lg:text-xl font-semibold">Store State: Not yet.</p>
+            {/if}
+            <div class='lg:w-[28rem] w-[32rem]'></div>
+            <h3 class="adaptable-center-text text-lg lg:text-3xl font-semibold my-4">Lets see bitcoin price</h3>
+
+            {#if $isLoading}
+                <Spinner appendClass='data' />
+            {:else}
+                <p class='adaptable-center-text text-base lg:text-lg font-semibold'>Symbol: { $bin.symbol } </p>
+                <p class='adaptable-center-text text-base lg:text-lg font-semibold'>Price: { $bin.askPrice } </p>
             {/if}
         </div>
     </div>
+    <div class='flex items-center justify-center my-8 tall:my-12'>
+        <button class="standard-button"on:click={() => navigateTo('/store')}>Go to store</button>
+    </div>
+    <div class='flex flex-row items-center justify-center'>
+        <button class="blue-button" on:click={blueChange}></button>
+        <button class="purple-button" on:click={purpleChange}></button>
+        <button class="red-button" on:click={redChange}></button>
+        <button class="emerald-button" on:click={emeraldChange}></button>
+    </div>
 </div>
-
-<style lang="scss">
-@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"; 
-.roboto {
-    font-family: 'Roboto', sans-serif;
-}
-</style>
