@@ -1,19 +1,18 @@
 <script lang="ts">
 import { onDestroy, onMount } from 'svelte';
-import { goto } from '$app/navigation';
 
 import { data, theme } from '$lib/stores';
 import Spinner from "$lib/components/Spinner.svelte";
 
-import { useHome } from '$lib/context/useHome';
-import { blueChange, purpleChange, redChange, emeraldChange } from '$lib/context/HomeContext.svelte';
+import { useHome, blueChange, purpleChange, 
+        redChange, emeraldChange, unsubscribe, changeToStore } from '$lib/context/Home';
 
 import brand from '$lib/assets/brand.png';
 import brandwhite from '$lib/assets/brandwhite.png';
 import tailwind from '$lib/assets/tailwind.png';
 import tailwindWhite from '$lib/assets/tailwindwhite.png';
 
-const { isLoading, bin, getCurrencies, unsubscribe } = useHome();
+const { isLoading, bin, getCurrencies } = useHome();
 
 onMount(() => getCurrencies());
 onDestroy(() => unsubscribe());
@@ -45,7 +44,7 @@ onDestroy(() => unsubscribe());
         </div>
     </div>
     <div class='flex items-center justify-center my-8 tall:my-12'>
-        <button class="standard-button" on:click={() => goto('/store')}>Go to store</button>
+        <button class="standard-button" on:click={changeToStore}>Go to store</button>
     </div>
     <div class='flex flex-row items-center justify-center'>
         <button class="blue-button" on:click={blueChange}></button>
