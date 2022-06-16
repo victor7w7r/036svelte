@@ -1,19 +1,18 @@
 <script lang="ts">
 import { onDestroy, onMount } from 'svelte';
-import { navigateTo } from 'yrv';
 
 import { data, theme } from '@/stores';
 import Spinner from "@/components/Spinner.svelte";
 
-import { useHome } from '@/context/useHome';
-import { blueChange, purpleChange, redChange, emeraldChange } from '@/context/HomeContext.svelte';
+import { useHome, blueChange, purpleChange, 
+        redChange, emeraldChange, unsubscribe, changeToStore } from '@/context/Home';
 
 import brand from '../assets/brand.png';
 import brandwhite from '../assets/brandwhite.png';
 import tailwind from '../assets/tailwind.png';
 import tailwindWhite from '../assets/tailwindwhite.png';
 
-const { isLoading, bin, getCurrencies, unsubscribe } = useHome();
+const { isLoading, bin, getCurrencies } = useHome();
 
 onMount(() => getCurrencies());
 onDestroy(() => unsubscribe());
@@ -36,7 +35,6 @@ onDestroy(() => unsubscribe());
             {/if}
             <div class='lg:w-[28rem] w-[32rem]'></div>
             <h3 class="adaptable-center-text text-lg lg:text-3xl font-semibold my-4">Lets see bitcoin price</h3>
-
             {#if $isLoading}
                 <Spinner appendClass='data' />
             {:else}
@@ -46,7 +44,7 @@ onDestroy(() => unsubscribe());
         </div>
     </div>
     <div class='flex items-center justify-center my-8 tall:my-12'>
-        <button class="standard-button"on:click={() => navigateTo('/store')}>Go to store</button>
+        <button class="standard-button" on:click={changeToStore}>Go to store</button>
     </div>
     <div class='flex flex-row items-center justify-center'>
         <button class="blue-button" on:click={blueChange}></button>

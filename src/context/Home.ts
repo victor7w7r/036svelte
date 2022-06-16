@@ -1,7 +1,33 @@
-<script lang="ts" context="module">
 
+import { writable, get } from 'svelte/store';
+import { Subscription } from 'rxjs';
+import { navigateTo } from 'yrv';
+
+import type { TBinance } from '@/types';
 import { theme } from '@/stores';
-import { get } from 'svelte/store';
+import { binance$ } from '@/api/binance';
+
+let subscription = new Subscription();
+
+export const useHome = () => {
+
+    const bin = writable<TBinance>();
+    const isLoading = writable<boolean>(true);
+
+    const getCurrencies = (): void => {
+        subscription = binance$.subscribe( data => {
+            const binReq = data.find(curr => curr.symbol === 'BTCUSDT');
+            bin.update(bin => ({...bin, ...binReq}));
+            isLoading.update(load => !load);
+        });
+    };
+
+    return { isLoading, bin, getCurrencies };
+};
+
+export const unsubscribe = (): void => subscription.unsubscribe();
+
+export const changeToStore = (): void => navigateTo('/store');
 
 export const blueChange = (): void => { 
 
@@ -55,4 +81,3 @@ export const emeraldChange = (): void => {
         theme.setTogglePeer('peer-checked:bg-emerald-500');
     }
 };
-</script>
