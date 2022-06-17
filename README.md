@@ -6,7 +6,7 @@ A very simple template for Svelte with essential packages and strict TypeScript
 
 Is the best programming language for web. Made with ❤️ by
 
-![Alt text](/src/assets/brandwhite.png?raw=true "Title")
+![Alt text](src/assets/brandwhite.png?raw=true "Title")
 
 ### Information for branches
 
