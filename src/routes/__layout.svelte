@@ -3,10 +3,8 @@
 </svelte:head>
 
 <script lang=ts>
-import { onMount } from 'svelte';
 import { theme } from '$lib/stores';
 
-import Header from '../lib/components/Header.svelte';
 import '../index.scss';
 
 onMount(() => {

@@ -1,7 +1,5 @@
 <script lang="ts">
 import { theme } from '$lib/stores';
-
-import DarkModeToggler from './DarkModeToggler.svelte';
 import logo from '$lib/assets/svelte.png';
 </script>
     

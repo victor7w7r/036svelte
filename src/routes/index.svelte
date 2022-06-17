@@ -1,8 +1,5 @@
 <script lang="ts">
-import { onDestroy, onMount } from 'svelte';
-
 import { data, theme } from '$lib/stores';
-import Spinner from "$lib/components/Spinner.svelte";
 
 import { useHome, blueChange, purpleChange, 
         redChange, emeraldChange, unsubscribe, changeToStore } from '$lib/context/Home';
